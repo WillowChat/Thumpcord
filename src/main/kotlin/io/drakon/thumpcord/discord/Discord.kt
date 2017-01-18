@@ -59,7 +59,8 @@ object Discord {
     fun getInviteLink(): String {
         if (!isConnected) throw DiscordNotConnectedException()
         val builder = BotInviteBuilder(client)
-        builder.withPermissions(EnumSet.of(Permissions.READ_MESSAGES, Permissions.SEND_MESSAGES, Permissions.EMBED_LINKS, Permissions.MENTION_EVERYONE))
+        builder.withPermissions(EnumSet.of(Permissions.READ_MESSAGES, Permissions.SEND_MESSAGES,
+                Permissions.EMBED_LINKS, Permissions.MENTION_EVERYONE, Permissions.READ_MESSAGE_HISTORY))
         return builder.build()
     }
 
