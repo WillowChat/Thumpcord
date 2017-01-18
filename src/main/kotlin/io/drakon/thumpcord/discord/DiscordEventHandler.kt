@@ -46,8 +46,8 @@ object DiscordEventHandler {
                         val online = users.joinToString(", ")
                         msg.reply("Players online: $online")
                     }
-                } catch (ex: NullPointerException) {
-                    // NO-OP
+                } catch (ex: Exception) {
+                    log.warn("Exception in messageReceived", ex)
                 }
             } else {
                 sink.sendToAllPlayers(displayName, DiscordChatFormatter.format(">> [$displayName] ${msg.content}"))

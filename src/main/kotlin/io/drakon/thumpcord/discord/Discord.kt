@@ -68,7 +68,11 @@ object Discord {
         try {
             val channel = getChannel()
             channel?.sendMessage(msg)
-        } catch (ex: DiscordNotConnectedException) {}
+        } catch (ex: DiscordNotConnectedException) {
+            // NO-OP
+        } catch (ex: Exception) {
+            logger.warn("Exception sending to channel.", ex)
+        }
     }
 
     private fun getGuild(): IGuild? {
