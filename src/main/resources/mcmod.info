@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "thumpcord",
+    "name": "Thumpcord",
+    "description": "Thump Discord adapter.",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": ["Arkan"],
+    "credits": "carrot for Thump.",
+    "logoFile": "thumpcord.png",
+    "screenshots": [],
+    "dependencies": ["Thump"]
+  }
+]

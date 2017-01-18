@@ -1,0 +1,162 @@
+/*
+* Thumpcord build file.
+* Portions from Thump's build file.
+*/
+
+//================================================
+// Pre-execute
+
+buildscript {
+    repositories {
+        jcenter()
+        maven {
+            name = "Forge"
+            url = "http://files.minecraftforge.net/maven"
+        }
+        maven {
+            name = 'Kotlin 1.1 EAP'
+            url = 'http://dl.bintray.com/kotlin/kotlin-eap-1.1'
+        }
+    }
+    dependencies {
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$KOTLIN_VER"
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.3'
+    }
+}
+
+repositories {
+    maven {
+        name 'Forge'
+        url 'http://files.minecraftforge.net/maven'
+    }
+    mavenCentral()
+    maven {
+        name 'Tethys (drakon.io)'
+        url 'https://tethys.drakon.io/maven'
+    }
+    maven {
+        name 'Hopper (carrot)'
+        url 'https://maven.hopper.bunnies.io/'
+    }
+    maven {
+        name = 'Kotlin 1.1 EAP'
+        url = 'http://dl.bintray.com/kotlin/kotlin-eap-1.1'
+    }
+    // Needed to workaround a dumb dependency in Warren/Kale
+    maven {
+        name = 'Kotlin DEV'
+        url = 'https://dl.bintray.com/kotlin/kotlin-dev'
+    }
+    // Discord4j
+    jcenter()
+    maven {
+        name = 'Jitpack'
+        url = 'https://jitpack.io'
+    }
+}
+
+apply plugin: 'net.minecraftforge.gradle.forge'
+apply plugin: 'kotlin'
+apply plugin: 'idea'
+apply plugin: 'com.github.johnrengelman.shadow'
+
+configurations {
+    shade
+    compile.extendsFrom shade
+}
+
+dependencies {
+    shade "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VER"
+    shade "com.github.austinv11:Discord4j:$D4J_VER"
+    deobfCompile "engineer.carrot.warren.thump:Thump:$MC_VER-$THUMP_VER"
+}
+
+minecraft {
+    version = "$MC_VER-$FORGE_VER"
+    mappings = MAPPINGS_VER
+    runDir = 'run'
+    replace '@VERSION@', MOD_VER
+    replace '@KOTLIN@', KOTLIN_VER
+}
+
+shadowJar {
+    classifier = null
+    configurations = [project.configurations.shade]
+
+    def REPACK_PACKAGE = 'io.drakon.thumpcord.repack'
+
+    relocate 'io.drakon.flightpath', "${REPACK_PACKAGE}.flightpath"
+    relocate 'kotlin', "${REPACK_PACKAGE}.kotlin"
+    relocate 'com', "${REPACK_PACKAGE}.com"
+    relocate 'javazoom', "${REPACK_PACKAGE}.javazoom"
+    relocate 'junit', "${REPACK_PACKAGE}.junit"
+    relocate 'net.jodah', "${REPACK_PACKAGE}.jodah"
+    relocate 'opus', "${REPACK_PACKAGE}.opus"
+    relocate 'org', "${REPACK_PACKAGE}.org"
+    relocate 'sx.blah.discord', "${REPACK_PACKAGE}.discord"
+}
+
+// Dirty hack to replace 'jar' with 'shadowJar'
+jar.deleteAllActions().dependsOn shadowJar
+
+//================================================
+// Jar data
+
+// Grab system env
+def env = System.getenv()
+
+group = "io.drakon"
+archivesBaseName = "thumpcord"
+version = "$MOD_VER+$MC_VER"
+
+// Version manifest
+def verManifest = manifest {
+    attributes("Forge-Version": MC_VER + "-" + FORGE_VER, "Kotlin-Version": KOTLIN_VER, "Mod-Version": MOD_VER)
+}
+
+//================================================
+// Jar tasks
+
+// Disable Javadoc doclint on JVM 1.8
+if (JavaVersion.current().isJava8Compatible()) {
+    allprojects {
+        tasks.withType(Javadoc) {
+            options.addStringOption('Xdoclint:none', '-quiet')
+        }
+    }
+}
+
+jar {
+    // Shading
+    configurations.shade.each { dep ->
+        from(project.zipTree(dep)) {
+            exclude 'META-INF', 'META-INF/**'
+        }
+    }
+
+    // Merge Jenkins and Git manifests to form final manifest in final release jar
+    manifest {
+        from verManifest
+    }
+}
+
+// Borrowed from https://github.com/McJty/RFTools/blob/1.10/build.gradle
+processResources {
+    // this will ensure that this task is redone when the versions change.
+    inputs.property "version", project.version
+    inputs.property "mcversion", project.minecraft.version
+
+    // replace stuff in mcmod.info, nothing else
+    from(sourceSets.main.resources.srcDirs) {
+        include 'mcmod.info'
+
+        // replace version and mcversion
+        expand 'version': project.version, 'mcversion': project.minecraft.version
+    }
+
+    // copy everything else, thats not the mcmod.info
+    from(sourceSets.main.resources.srcDirs) {
+        exclude 'mcmod.info'
+    }
+}
