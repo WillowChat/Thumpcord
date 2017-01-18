@@ -84,16 +84,34 @@ shadowJar {
     classifier = null
     configurations = [project.configurations.shade]
 
+    dependencies {
+        exclude(dependency('org.apache.logging.log4j:.*:.*'))
+        //exclude(dependency('commons-logging:.*:.*'))
+    }
+
     def REPACK_PACKAGE = 'io.drakon.thumpcord.repack'
 
     relocate 'io.drakon.flightpath', "${REPACK_PACKAGE}.flightpath"
     relocate 'kotlin', "${REPACK_PACKAGE}.kotlin"
-    relocate 'com', "${REPACK_PACKAGE}.com"
+    relocate 'com.google.gson', "${REPACK_PACKAGE}.gson"
+    relocate 'com.jcraft', "${REPACK_PACKAGE}.jcraft"
+    relocate 'com.sun', "${REPACK_PACKAGE}.sun"
     relocate 'javazoom', "${REPACK_PACKAGE}.javazoom"
     relocate 'junit', "${REPACK_PACKAGE}.junit"
     relocate 'net.jodah', "${REPACK_PACKAGE}.jodah"
     relocate 'opus', "${REPACK_PACKAGE}.opus"
-    relocate 'org', "${REPACK_PACKAGE}.org"
+    relocate 'org.eclipse', "${REPACK_PACKAGE}.eclipse"
+    relocate 'org.intellij', "${REPACK_PACKAGE}.intellij"
+    relocate 'org.jetbrains', "${REPACK_PACKAGE}.jetbrains"
+    relocate 'org.kc7bfi', "${REPACK_PACKAGE}.kc7bfi"
+    relocate 'org.peergos', "${REPACK_PACKAGE}.peergos"
+    relocate 'org.slf4j', "${REPACK_PACKAGE}.slf4j"
+    relocate 'org.tritonus', "${REPACK_PACKAGE}.tritonus"
+    relocate 'org.apache.http', "${REPACK_PACKAGE}.apache.http"
+    relocate 'org.apache.commons.codec', "${REPACK_PACKAGE}.apache.commons.codec"
+    relocate 'org.apache.commons.io', "${REPACK_PACKAGE}.apache.commons.io"
+    relocate 'org.apache.commons.lang3', "${REPACK_PACKAGE}.apache.commons.lang3"
+    relocate 'org.apache.commons.logging', "${REPACK_PACKAGE}.apache.commons.logging"
     relocate 'sx.blah.discord', "${REPACK_PACKAGE}.discord"
 }
 
