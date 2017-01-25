@@ -91,14 +91,12 @@ shadowJar {
         exclude(dependency('net.java.dev.jna:jna:.*'))
         exclude(dependency('net.java.dev.jna:platform:.*'))
         exclude(dependency('org.apache.logging.log4j:.*:.*'))
-        //exclude(dependency('commons-logging:.*:.*'))
     }
 
     exclude '/opus/'
 
     def REPACK_PACKAGE = 'io.drakon.thumpcord.repack'
 
-    relocate 'io.drakon.flightpath', "${REPACK_PACKAGE}.flightpath"
     relocate 'kotlin', "${REPACK_PACKAGE}.kotlin"
     relocate 'com.google.gson', "${REPACK_PACKAGE}.gson"
     relocate 'com.jcraft', "${REPACK_PACKAGE}.jcraft"
@@ -133,11 +131,6 @@ group = "io.drakon"
 archivesBaseName = "thumpcord"
 version = "$MOD_VER+$MC_VER"
 
-// Version manifest
-def verManifest = manifest {
-    attributes("Forge-Version": MC_VER + "-" + FORGE_VER, "Kotlin-Version": KOTLIN_VER, "Mod-Version": MOD_VER)
-}
-
 //================================================
 // Jar tasks
 
@@ -147,20 +140,6 @@ if (JavaVersion.current().isJava8Compatible()) {
         tasks.withType(Javadoc) {
             options.addStringOption('Xdoclint:none', '-quiet')
         }
-    }
-}
-
-jar {
-    // Shading
-    configurations.shade.each { dep ->
-        from(project.zipTree(dep)) {
-            exclude 'META-INF', 'META-INF/**'
-        }
-    }
-
-    // Merge Jenkins and Git manifests to form final manifest in final release jar
-    manifest {
-        from verManifest
     }
 }
 
