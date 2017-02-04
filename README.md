@@ -1,4 +1,4 @@
-#Thumpcord
+# Thumpcord :space_invader:
 Discord backend for Thump.
 
 ##Legal
