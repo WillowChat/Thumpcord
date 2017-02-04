@@ -1,5 +1,5 @@
 
-Copyright (c) 2016, Arkan Emberwalker <arkan@drakon.io>
+Copyright (c) 2016, Willow Contributors
 
 Permission to use, copy, modify, and/or distribute this software for any
 purpose with or without fee is hereby granted, provided that the above
