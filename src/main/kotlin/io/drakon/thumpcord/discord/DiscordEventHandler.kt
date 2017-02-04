@@ -49,8 +49,10 @@ object DiscordEventHandler {
                 } catch (ex: Exception) {
                     log.warn("Exception in messageReceived", ex)
                 }
+            } else if (msg.content == "!tps") {
+                // TODO
             } else {
-                sink.sendToAllPlayers(displayName, DiscordChatFormatter.format(">> [$displayName] ${msg.content}"))
+                sink.sendToAllPlayers(displayName, DiscordChatFormatter.format(">> [$displayName] ${msg.formattedContent}"))
             }
         }
     }
