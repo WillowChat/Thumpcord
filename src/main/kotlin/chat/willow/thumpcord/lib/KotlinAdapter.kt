@@ -1,4 +1,4 @@
-package io.drakon.thumpcord.lib
+package chat.willow.thumpcord.lib
 
 import net.minecraftforge.fml.common.ILanguageAdapter
 import net.minecraftforge.fml.common.FMLModContainer

@@ -1,4 +1,4 @@
-package io.drakon.thumpcord.thump
+package chat.willow.thumpcord.thump
 
 import engineer.carrot.warren.thump.api.ICommandHandler
 import net.minecraft.command.ICommandSender

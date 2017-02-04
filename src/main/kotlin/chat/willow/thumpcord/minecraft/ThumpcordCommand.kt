@@ -1,6 +1,6 @@
-package io.drakon.thumpcord.minecraft
+package chat.willow.thumpcord.minecraft
 
-import io.drakon.thumpcord.discord.Discord
+import chat.willow.thumpcord.discord.Discord
 import net.minecraft.command.CommandBase
 import net.minecraft.command.ICommandSender
 import net.minecraft.server.MinecraftServer

@@ -1,7 +1,7 @@
-package io.drakon.thumpcord.discord
+package chat.willow.thumpcord.discord
 
 import io.drakon.thumpcord.Thumpcord.log
-import io.drakon.thumpcord.thump.DiscordChatFormatter
+import chat.willow.thumpcord.thump.DiscordChatFormatter
 import io.drakon.thumpcord.thump.DiscordServicePlugin.configuration
 import io.drakon.thumpcord.thump.DiscordServicePlugin.sink
 import net.minecraft.util.text.TextComponentString

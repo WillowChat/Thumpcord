@@ -1,4 +1,4 @@
-package io.drakon.thumpcord
+package chat.willow.thumpcord
 
 import io.drakon.thumpcord.minecraft.ThumpcordCommand
 import net.minecraftforge.fml.common.Mod

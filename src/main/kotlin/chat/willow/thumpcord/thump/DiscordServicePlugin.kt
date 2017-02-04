@@ -1,8 +1,9 @@
-package io.drakon.thumpcord.thump
+package chat.willow.thumpcord.thump
 
+import chat.willow.thumpcord.Thumpcord
 import engineer.carrot.warren.thump.api.*
 import io.drakon.thumpcord.Thumpcord.log
-import io.drakon.thumpcord.discord.Discord
+import chat.willow.thumpcord.discord.Discord
 
 import io.drakon.thumpcord.thump.config.DiscordServicePluginConfig
 import net.minecraft.util.text.ITextComponent
@@ -42,18 +43,18 @@ object DiscordServicePlugin: IThumpServicePlugin {
 
     override fun start() {
         if (started) {
-            log.warn("Thumpcord already started! Skipping.")
+            Thumpcord.log.warn("Thumpcord already started! Skipping.")
             return
         }
         if (configuration.account.token == "") {
-            log.info("No token provided; skipping Discord integration.")
+            Thumpcord.log.info("No token provided; skipping Discord integration.")
             return
         }
-        log.info("Thumpcord start()")
+        Thumpcord.log.info("Thumpcord start()")
         try {
             val success = Discord.connect(configuration)
             if (!success) {
-                log.warn("Unable to connect to Discord! Use '/thump discord reconnect' to reconnect.")
+                Thumpcord.log.warn("Unable to connect to Discord! Use '/thump discord reconnect' to reconnect.")
                 sink.sendToAllPlayersWithoutCheckingSource(TextComponentString("[Thumpcord] Unable to connect to Discord! Use '/thump discord reconnect' to reconnect."))
             }
         } catch (ex: Discord.DiscordAlreadyConnectedException) {
@@ -63,7 +64,7 @@ object DiscordServicePlugin: IThumpServicePlugin {
 
     fun reconnect() {
         if (started && !Discord.isConnected) {
-            log.info("Attempting to reconnect to Discord...")
+            Thumpcord.log.info("Attempting to reconnect to Discord...")
             sink.sendToAllPlayersWithoutCheckingSource(TextComponentString("[Thumpcord] Attempting to reconnect to Discord..."))
             Discord.connect(configuration)
         }

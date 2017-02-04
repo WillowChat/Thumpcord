@@ -32,10 +32,6 @@ repositories {
     }
     mavenCentral()
     maven {
-        name 'Tethys (drakon.io)'
-        url 'https://tethys.drakon.io/maven'
-    }
-    maven {
         name 'Hopper (carrot)'
         url 'https://maven.hopper.bunnies.io/'
     }
@@ -43,7 +39,7 @@ repositories {
         name = 'Kotlin 1.1 EAP'
         url = 'http://dl.bintray.com/kotlin/kotlin-eap-1.1'
     }
-    // Needed to workaround a dumb dependency in Warren/Kale
+    // Needed to workaround a dependency in Warren/Kale
     maven {
         name = 'Kotlin DEV'
         url = 'https://dl.bintray.com/kotlin/kotlin-dev'
@@ -95,7 +91,7 @@ shadowJar {
 
     exclude '/opus/'
 
-    def REPACK_PACKAGE = 'io.drakon.thumpcord.repack'
+    def REPACK_PACKAGE = 'chat.willow.thumpcord.repack'
 
     relocate 'kotlin', "${REPACK_PACKAGE}.kotlin"
     relocate 'com.google.gson', "${REPACK_PACKAGE}.gson"
@@ -127,7 +123,7 @@ jar.deleteAllActions().dependsOn shadowJar
 // Grab system env
 def env = System.getenv()
 
-group = "io.drakon"
+group = "chat.willow"
 archivesBaseName = "thumpcord"
 version = "$MOD_VER+$MC_VER"
 

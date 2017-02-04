@@ -1,4 +1,4 @@
-package io.drakon.thumpcord.thump.config
+package chat.willow.thumpcord.thump.config
 
 import engineer.carrot.warren.thump.api.IThumpServicePluginConfig
 import net.minecraftforge.common.config.Configuration

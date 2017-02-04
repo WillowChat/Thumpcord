@@ -1,4 +1,4 @@
-package io.drakon.thumpcord.discord
+package chat.willow.thumpcord.discord
 
 import io.drakon.thumpcord.thump.config.DiscordServicePluginConfig
 import org.apache.logging.log4j.LogManager
