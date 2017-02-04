@@ -68,7 +68,7 @@ configurations {
 dependencies {
     shade "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VER"
     shade "com.github.austinv11:Discord4j:$D4J_VER"
-    deobfCompile "engineer.carrot.warren.thump:Thump:$MC_VER-$THUMP_VER"
+    deobfCompile "chat.willow.thump:Thump:$MC_VER-$THUMP_VER"
 }
 
 minecraft {

@@ -1,9 +1,9 @@
 package chat.willow.thumpcord.discord
 
-import io.drakon.thumpcord.Thumpcord.log
+import chat.willow.thumpcord.Thumpcord.log
 import chat.willow.thumpcord.thump.DiscordChatFormatter
-import io.drakon.thumpcord.thump.DiscordServicePlugin.configuration
-import io.drakon.thumpcord.thump.DiscordServicePlugin.sink
+import chat.willow.thumpcord.thump.DiscordServicePlugin.configuration
+import chat.willow.thumpcord.thump.DiscordServicePlugin.sink
 import net.minecraft.util.text.TextComponentString
 import net.minecraftforge.fml.server.FMLServerHandler
 import org.apache.logging.log4j.Level
@@ -39,7 +39,7 @@ object DiscordEventHandler {
             if (msg.content == "!players") {
                 try {
                     val serv = FMLServerHandler.instance().server
-                    val users = serv.allUsernames
+                    val users = serv.playerList.players
                     if (users.isEmpty()) {
                         msg.reply("Nobody is online.")
                     } else {

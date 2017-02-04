@@ -15,16 +15,16 @@ class ThumpcordCommand: CommandBase() {
                 val link = Discord.getInviteLink()
                 val txt = TextComponentString("Bot invite link: ")
                 txt.appendSibling(ForgeHooks.newChatWithLinks(link))
-                sender?.addChatMessage(txt)
+                sender?.sendMessage(txt)
             }
         }
     }
 
-    override fun getCommandName(): String {
+    override fun getName(): String {
         return "thumpcord"
     }
 
-    override fun getCommandUsage(sender: ICommandSender?): String {
+    override fun getUsage(sender: ICommandSender?): String {
         return "/thumpcord invite"
     }
 

@@ -1,14 +1,12 @@
 package chat.willow.thumpcord.thump
 
 import chat.willow.thumpcord.Thumpcord
-import engineer.carrot.warren.thump.api.*
-import io.drakon.thumpcord.Thumpcord.log
+import chat.willow.thump.api.*
 import chat.willow.thumpcord.discord.Discord
 
-import io.drakon.thumpcord.thump.config.DiscordServicePluginConfig
+import chat.willow.thumpcord.thump.config.DiscordServicePluginConfig
 import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TextComponentString
-import org.apache.logging.log4j.Level
 
 /**
  * Discord Thump service plugin. Based on the original IRC adapter.
@@ -16,8 +14,8 @@ import org.apache.logging.log4j.Level
 @ThumpServicePlugin
 object DiscordServicePlugin: IThumpServicePlugin {
 
-    override val id = "discord"
-    override val commandHandler: ICommandHandler = DiscordServiceCommandHandler
+    private val id = "discord"
+    private val commandHandler: ICommandHandler = DiscordServiceCommandHandler
 
     private val formatter: IServiceChatFormatter = DiscordChatFormatter
     lateinit var configuration: DiscordServicePluginConfig
@@ -79,4 +77,11 @@ object DiscordServicePlugin: IThumpServicePlugin {
         Discord.sendToChannel(DiscordChatFormatter.format(message))
     }
 
+    override fun getCommandHandler(): ICommandHandler {
+        return commandHandler
+    }
+
+    override fun getId(): String {
+        return id
+    }
 }

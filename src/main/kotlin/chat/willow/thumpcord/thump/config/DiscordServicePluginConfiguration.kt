@@ -1,6 +1,6 @@
 package chat.willow.thumpcord.thump.config
 
-import engineer.carrot.warren.thump.api.IThumpServicePluginConfig
+import chat.willow.thump.api.IThumpServicePluginConfig
 import net.minecraftforge.common.config.Configuration
 
 /**

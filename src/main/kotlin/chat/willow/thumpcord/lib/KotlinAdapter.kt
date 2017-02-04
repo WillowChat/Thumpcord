@@ -12,7 +12,7 @@ import java.lang.reflect.Method
 /**
  * Kotlin implementation of FML's ILanguageAdapter.
  *
- * Use by setting <pre>modLanguageAdapter = "io.drakon.thumpcord.lib.KotlinAdapter"</pre> in the Mod annotation.
+ * Use by setting <pre>modLanguageAdapter = "chat.willow.thumpcord.lib.KotlinAdapter"</pre> in the Mod annotation.
  * Your Kotlin @Mod implementation <b>must</b> be an <pre>object</pre> type.
  * (Forge 1.8-11.14.1.1371 and Kotlin RC1 or above required)
  *

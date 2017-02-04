@@ -1,6 +1,6 @@
 package chat.willow.thumpcord.thump
 
-import engineer.carrot.warren.thump.api.IServiceChatFormatter
+import chat.willow.thump.api.IServiceChatFormatter
 import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TextComponentString
 
