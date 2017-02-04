@@ -39,7 +39,6 @@ pipeline {
             steps {
                 parallel(
                     archive: { archive includes: 'build/libs/*.jar' },
-                    junit: { junit 'build/test-results/**/*.xml' },
                     maven: {
                         sh "./gradlew generatePomFileForMavenJavaPublication -PBUILD_NUMBER=${env.BUILD_NUMBER} --no-daemon"
 
