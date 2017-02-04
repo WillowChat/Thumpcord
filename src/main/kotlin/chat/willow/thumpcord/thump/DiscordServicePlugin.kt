@@ -2,10 +2,10 @@ package chat.willow.thumpcord.thump
 
 import chat.willow.thumpcord.Thumpcord
 import engineer.carrot.warren.thump.api.*
-import io.drakon.thumpcord.Thumpcord.log
+import chat.willow.thumpcord.Thumpcord.log
 import chat.willow.thumpcord.discord.Discord
 
-import io.drakon.thumpcord.thump.config.DiscordServicePluginConfig
+import chat.willow.thumpcord.thump.config.DiscordServicePluginConfig
 import net.minecraft.util.text.ITextComponent
 import net.minecraft.util.text.TextComponentString
 import org.apache.logging.log4j.Level

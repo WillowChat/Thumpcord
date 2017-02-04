@@ -1,6 +1,6 @@
 package chat.willow.thumpcord
 
-import io.drakon.thumpcord.minecraft.ThumpcordCommand
+import chat.willow.thumpcord.minecraft.ThumpcordCommand
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent
@@ -12,7 +12,7 @@ import sx.blah.discord.Discord4J
  *
  * @author Arkan <arkan@drakon.io>
  */
-@Mod(modid = "thumpcord", name = "Thumpcord", modLanguage = "kotlin", modLanguageAdapter = "io.drakon.thumpcord.lib.KotlinAdapter", acceptableRemoteVersions = "*", acceptedMinecraftVersions = "[1.10]", dependencies = "required-after:Thump")
+@Mod(modid = "thumpcord", name = "Thumpcord", modLanguage = "kotlin", modLanguageAdapter = "chat.willow.thumpcord.lib.KotlinAdapter", acceptableRemoteVersions = "*", acceptedMinecraftVersions = "[1.10]", dependencies = "required-after:Thump")
 object Thumpcord {
 
     val log = LogManager.getLogger("Thumpcord")!!

@@ -1,6 +1,6 @@
 package chat.willow.thumpcord.discord
 
-import io.drakon.thumpcord.thump.config.DiscordServicePluginConfig
+import chat.willow.thumpcord.thump.config.DiscordServicePluginConfig
 import org.apache.logging.log4j.LogManager
 import sx.blah.discord.api.ClientBuilder
 import sx.blah.discord.api.IDiscordClient
