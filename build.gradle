@@ -56,6 +56,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'kotlin'
 apply plugin: 'idea'
 apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'maven-publish'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -123,9 +124,11 @@ jar.deleteAllActions().dependsOn shadowJar
 // Grab system env
 def env = System.getenv()
 
-group = "chat.willow"
-archivesBaseName = "thumpcord"
-version = "$MOD_VER+$MC_VER"
+def buildNumberAddition = project.hasProperty("BUILD_NUMBER") ? ".${project.property("BUILD_NUMBER")}" : ""
+
+version = MC_VER + "-" + MOD_VER + buildNumberAddition
+group = "chat.willow.thump"
+project.setProperty("archivesBaseName", "Thumpcord")
 
 //================================================
 // Jar tasks
@@ -158,3 +161,30 @@ processResources {
         exclude 'mcmod.info'
     }
 }
+
+task deobfJar(type: Jar) {
+    from sourceSets.main.output
+    classifier = 'deobf'
+}
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.allSource
+    classifier = 'sources'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+
+            artifact deobfJar
+
+            artifact shadowJar {
+                classifier ""
+            }
+
+            artifact sourceJar
+        }
+    }
+}
+
